@@ -3,6 +3,8 @@ node_modules
 coverage
 coverage.json
 typechain
+IERC20.sol
+IERC721.sol
 
 #Hardhat files
 cache
