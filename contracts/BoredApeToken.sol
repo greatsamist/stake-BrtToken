@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract BoredToken is ERC20, Ownable {
     constructor() ERC20("BoredToken", "BRT") {
         // automatically mint 100 tokens to msg.sender
-        _mint(msg.sender, 100 * 10**18);
+        _mint(msg.sender, 1000000 * 10**18);
     }
 
     // Mints amount of BoredToken
