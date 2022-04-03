@@ -12,14 +12,13 @@ pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract stakingBrt is ReentrancyGuard {
+contract stakingBrt {
     IERC20 BrtToken;
     IERC721 BoredApesNFT;
 
     // stake minimum time is 3 days or no reward
-    uint96 constant minPeriod = 259200;
+    uint96 constant minPeriod = 259200 seconds;
 
     // uint256 public lastUpdateTime;
     mapping(address => uint256) public lastUpdateTime;
@@ -36,7 +35,7 @@ contract stakingBrt is ReentrancyGuard {
 
     function rewardPerToken() public view returns (uint256) {
         require(
-            block.timestamp - lastUpdateTime[msg.sender] >= minPeriod,
+            lastUpdateTime[msg.sender] + minPeriod <= block.timestamp,
             "Not up to 3 days"
         );
         uint256 initialAmount = _balances[msg.sender] * 1e18;
